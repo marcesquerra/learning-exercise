@@ -1,10 +1,109 @@
 <html>
 <head>
+  <script>
+
+    inicial=null
+
+    options = [
+      [1, 2, 3],
+      [1, 3, 2],
+      [2, 1, 3],
+      [2, 3, 1],
+      [3, 1, 2],
+      [3, 2, 1]
+    ];
+
+    function genThree() {
+      option = Math.floor(Math.random() * 6);
+      return options[option]
+    }
+
+    function fill(t, v) {
+      frame = document.getElementById(t)
+      frame.innerHTML = v
+    }
+
+    function gen() {
+      inicial=null
+      f = genThree()
+      inicial=f
+      fill("fa", f[0])
+      fill("fb", f[1])
+      fill("fc", f[2])
+
+      m = genThree()
+      mt = m[0] + ", " + m[1] + ", " + m[2]
+      fill("min", mt)
+
+      r = genThree()
+      rt = r[0] + ", " + r[1] + ", " + r[2]
+      fill("res", rt)
+
+      now=inicial
+      while (now == inicial) {
+        now = genThree()
+      }
+      f=now
+      fill("oa", f[0])
+      fill("ob", f[1])
+      fill("oc", f[2])
+    }
+
+  </script>
 </head>
 
 <body>
-  <h1>Exercise</h1>
+  <h1>Ejercicio</h1>
+
+  <div id=content></div>
+
+  Pon las ventanas en este orden:
+  <table width=100 border=1>
+    <tr>
+      <td rowspan=2 id=fa>1</td>
+      <td id=fb>2</td>
+    </tr>
+    <tr>
+      <td id=fc>3</td>
+    </tr>
+  </table>
+  <br />
+  <br />
+  Ahora, minimiza las ventanas en este orden:
+  <div id=min ></div>
+
+  <br />
+  <br />
+  Ahora, restaura las ventanas en este orden:
+  <div id=res ></div>
+
+  <br />
+  <br />
+
+  Ahora reordena las ventanas para que queden asi:
+  <table width=100 border=1>
+    <tr>
+      <td rowspan=2 id=oa>1</td>
+      <td id=ob>2</td>
+    </tr>
+    <tr>
+      <td id=oc>3</td>
+    </tr>
+  </table>
+
+
+  <br />
+  <br />
+  <br />
+  <br />
+  <button onclick="gen()">Regenerar</button>
+
 </body>
 
+  <script>
+    gen()
+  </script>
 </html>
+
+
 
